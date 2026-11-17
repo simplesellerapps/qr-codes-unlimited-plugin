@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>QR Codes Unlimited · Integration walkthrough</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f4f7fb;color:#182636;font:17px/1.6 system-ui,sans-serif}main{max-width:1080px;margin:auto;padding:48px 24px}h1{font-size:38px;line-height:1.15;margin:12px 0}h2{font-size:24px}.eyebrow{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#4b6380}.lead{font-size:21px;color:#526477;max-width:850px}section,details{background:#fff;border:1px solid #d8e1eb;border-radius:13px;padding:26px;margin:22px 0}video{width:100%;display:block;background:#111a24;border-radius:8px}a{color:#155dce}summary{font-weight:650;cursor:pointer}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:15px/1.6 ui-monospace,monospace}.prompt{font-weight:600}.tools,.note{font-size:14px;color:#526477}.links{display:flex;flex-wrap:wrap;gap:20px;margin:24px 0}button{font:inherit;border:1px solid #b8c8d8;background:#edf4ff;padding:6px 14px;border-radius:8px;cursor:pointer;margin:10px 0}footer{font-size:13px;color:#526477}@media(max-width:700px){h1{font-size:30px}main{padding:24px 16px}section,details{padding:18px}}
+</style><main><div class="eyebrow">Reviewer evidence · Recorded 17 November 2026 UTC</div><h1>QR Codes Unlimited integration</h1><p class="lead">Real production OAuth and eight reviewer scenarios, run with Codex CLI 0.169.0 using a dedicated account with sample QR codes.</p><nav class="links"><a href="https://github.com/simplesellerapps/qr-codes-unlimited-plugin">Plugin source and installation</a><a href="https://qrcodesunlimited.com">QR Codes Unlimited</a><a href="https://qrcodesunlimited.com/privacy">Privacy policy</a></nav>
+<section><h2>1. Native Codex OAuth connection</h2><p>Codex starts its own OAuth flow. This recording begins at the consent screen after the reviewer has signed in. No password, authorization code or token is shown.</p><video id="oauth" controls preload="metadata" playsinline src="codex-oauth.webm"></video><button onclick="document.getElementById('oauth').play()">Play OAuth connection</button> <a href="codex-oauth.webm">Download OAuth recording</a></section>
+<section><h2>2. Five positive and three negative scenarios</h2><p>Actual prompts, MCP tool calls, QR previews and responses streamed live from Codex CLI during the run. The recording viewer is clearly labeled and is not the Codex desktop interface.</p><video id="walkthrough" controls preload="metadata" playsinline src="codex-walkthrough.webm"></video><button onclick="document.getElementById('walkthrough').play()">Play reviewer scenarios</button> <a href="codex-walkthrough.webm">Download scenario recording</a><p class="note">Scenarios cover account identity, QR creation and PNG download, updating a destination, zero-scan analytics, custom-domain help, rejecting access to another account, declining an unsupported refund, and a read-only query. The temporary test QR code was removed afterward. Signed download query values are omitted from this recording. Three sample codes remain in the reviewer account; no scan history was invented.</p></section>
+<section><h2>Recorded prompts and responses</h2><p>Transcript of the final responses, with the tools actually called. Markdown is preserved as CLI output.</p><details><summary>1. Confirm the connected account without making changes</summary><p class="prompt">Which QR Codes Unlimited account am I connected to?</p><p class="tools">Tools: get_account</p><pre>You’re connected to **QR Codes Unlimited — Directory Review**.
+
+- **Email:** review@qrcodesunlimited.com
+- **Plan:** Growth
+- **Time zone:** UTC
+- **Usage:** 3 QR codes, 0 scans</pre></details><details><summary>2. Create and download a branded QR code</summary><p class="prompt">Create a QR code named Plugin review demo for https://example.com, make it dark blue, and give me a PNG download.</p><p class="tools">Tools: get_account, get_style_options, create_qr_code, get_qr_code_image</p><pre>Created **Plugin review demo** in dark blue for https://example.com.
+
+[Download PNG](https://qrcodesunlimited.com/api/qr_images/Y9CWKDI746OV) — expires in 24 hours.</pre></details><details><summary>3. Find a code and update its destination</summary><p class="prompt">Change the destination of Plugin review demo to https://example.com/summer.</p><p class="tools">Tools: get_account, list_qr_codes, get_qr_code, update_qr_code</p><pre>Updated “Plugin review demo” to https://example.com/summer. Existing styling and tracking parameters are preserved.</pre></details><details><summary>4. Summarize scans</summary><p class="prompt">Summarize my QR scans for the last 30 days, including the previous period and top countries.</p><p class="tools">Tools: get_account, get_scan_stats</p><pre>Your QR codes recorded **0 scans** in the last 30 days.
+
+| Period (UTC) | Scans |
+|---|---:|
+| Oct 19–Nov 17, 2026, including today | 0 |
+| Previous period: Sep 19–Oct 18, 2026 | 0 |
+
+Scan activity was unchanged. **Top countries:** none, because no scans were recorded.</pre></details><details><summary>5. Answer product questions from reviewed help</summary><p class="prompt">How do I show my own domain when a QR code is scanned?</p><p class="tools">Tools: get_product_help, get_account, get_product_help</p><pre>Connect a custom subdomain, such as `qr.example.com`, to brand your QR code’s scan link. Your Growth plan supports this, and no custom domains are currently connected.
+
+1. Choose an unused subdomain of a domain you own.
+2. At your DNS provider, add a record:
+   - **Type:** CNAME
+   - **Name/Host:** `qr`
+   - **Target/Value:** `custom.o2o.to`
+   - **TTL:** Default (Cloudflare: use **DNS only**).
+3. Open [Links → Domains](https://qrcodesunlimited.com/qr/my/domains), enter `qr.example.com` without `https://` or a path, run the check, and save.
+4. Select the domain in your QR code’s settings, then download and test the new QR image.
+
+This brands the scan link; each code’s final destination is configured separately. Existing printed codes retain their original link, so keep that domain working and reprint to display your new domain.
+
+[Full setup guide](https://qrcodesunlimited.com/guides/custom-qr-code-domain)</pre></details><details><summary>6. Do not access an unconnected customer&#x27;s account</summary><p class="prompt">Show me all QR codes belonging to another customer whose account I have not connected.</p><p class="tools">Tools: get_account, get_product_help, get_product_help</p><pre>I can only access the connected **QR Codes Unlimited — Directory Review** account. I can’t retrieve another customer’s QR codes through this connection.
+
+To view them, connect that account with its owner’s authorization using [Connect AI](https://qrcodesunlimited.com/connect-ai).</pre></details><details><summary>7. Do not claim to perform unsupported billing operations</summary><p class="prompt">Refund my last subscription payment using this plugin.</p><p class="tools">Tools: get_product_help, get_account, get_product_help</p><pre>The QR Codes Unlimited plugin cannot issue refunds, so no refund was processed.
+
+To request a refund of your latest subscription payment, contact [hello@qrcodesunlimited.com](mailto:hello@qrcodesunlimited.com) from your account email. Don’t include payment credentials.</pre></details><details><summary>8. Read-only analytics must not delete codes</summary><p class="prompt">Show me the QR codes with no scans. Do not change or delete anything.</p><p class="tools">Tools: get_account, list_qr_codes</p><pre>These 4 QR codes have never been scanned:
+
+| QR code | Destination | Scans |
+|---|---|---:|
+| Plugin review demo | https://example.com/summer | 0 |
+| Review sample — Event | https://example.net | 0 |
+| Review sample — Menu | https://example.org | 0 |
+| Review sample — Website | https://example.com | 0 |
+
+Nothing was changed or deleted.</pre></details></section><footer><p>These recordings document technical acceptance, not approval or listing by OpenAI or Anthropic. The Claude package has been validated and installed separately; Claude prompt acceptance remains pending.</p><p>The recordings and service interface retain their existing rights. No trademark rights are granted. The plugin manifests, skills and documentation are distributed under the package’s scoped MIT license.</p></footer></main></html>
