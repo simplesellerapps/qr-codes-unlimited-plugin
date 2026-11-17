@@ -1,6 +1,6 @@
 {
   "name": "qr-codes-unlimited",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Create, style, manage, and download QR codes, and explore scan analytics in your QR Codes Unlimited account.",
   "author": {
     "name": "QR Codes Unlimited",
@@ -101,10 +101,11 @@
           ]
         },
         "commerce": false,
-        "commerce_description": "The plugin accesses existing QR Codes Unlimited account entitlements. It does not sell services, initiate subscriptions, process payments, or provide checkout links."
+        "commerce_description": "The plugin accesses existing QR Codes Unlimited account entitlements. It does not sell services, initiate subscriptions, process payments, or provide checkout links.",
+        "demo_recording_url": "https://simplesellerapps.github.io/qr-codes-unlimited-plugin/"
       },
       "publication": {
-        "release_notes": "Public-directory preparation: scoped MIT license, account setup and QR workflows, data-use disclosure, and reviewer scenarios. Uses the existing hosted MCP service."
+        "release_notes": "Adds a public walkthrough of native Codex OAuth and five positive plus three negative reviewer scenarios, captured against production in Buildkite. The hosted MCP service and plugin workflows are unchanged."
       }
     }
   }
