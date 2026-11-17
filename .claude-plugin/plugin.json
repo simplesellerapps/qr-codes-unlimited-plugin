@@ -1,0 +1,26 @@
+{
+  "name": "qr-codes-unlimited",
+  "version": "0.2.0",
+  "description": "Create, style, manage, and download QR codes, and explore scan analytics in your QR Codes Unlimited account.",
+  "author": {
+    "name": "QR Codes Unlimited",
+    "email": "hello@qrcodesunlimited.com",
+    "url": "https://qrcodesunlimited.com"
+  },
+  "homepage": "https://qrcodesunlimited.com/#connect-ai",
+  "privacyPolicyUrl": "https://qrcodesunlimited.com/privacy",
+  "termsOfServiceUrl": "https://qrcodesunlimited.com/tos",
+  "supportUrl": "https://qrcodesunlimited.com/company",
+  "keywords": [
+    "qr-code",
+    "dynamic-qr",
+    "marketing",
+    "analytics"
+  ],
+  "mcpServers": "./.mcp.json",
+  "license": "MIT",
+  "repository": "https://github.com/simplesellerapps/qr-codes-unlimited-plugin",
+  "displayName": "QR Codes Unlimited",
+  "icon": "./assets/icon.png",
+  "documentationUrl": "https://qrcodesunlimited.com/qr/my/ai_assistants"
+}

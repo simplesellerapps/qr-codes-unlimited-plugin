@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "qrcodes": {
+      "type": "http",
+      "url": "https://qrcodesunlimited.com/mcp"
+    }
+  }
+}

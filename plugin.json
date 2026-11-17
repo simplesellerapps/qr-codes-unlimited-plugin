@@ -1,0 +1,109 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "qr-codes-unlimited",
+  "version": "0.2.0",
+  "description": "Create, style, manage, and download QR codes, and explore scan analytics in your QR Codes Unlimited account.",
+  "author": {
+    "name": "QR Codes Unlimited",
+    "email": "hello@qrcodesunlimited.com",
+    "url": "https://qrcodesunlimited.com"
+  },
+  "homepage": "https://qrcodesunlimited.com/#connect-ai",
+  "keywords": [
+    "qr-code",
+    "dynamic-qr",
+    "marketing",
+    "analytics"
+  ],
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/connect/SKILL.md",
+      "interface": {
+        "displayName": "QR Codes Unlimited",
+        "shortDescription": "Create QR codes. Track scans.",
+        "longDescription": "Create dynamic QR codes, apply your brand colors and logo, update destinations, download images, generate batches, and explore scan analytics through your connected QR Codes Unlimited account. Existing account permissions and plan limits apply. This package connects standalone accounts with browser sign-in; Shopify stores use the API-key setup described in the installation guide.",
+        "developerName": "QR Codes Unlimited",
+        "category": "Productivity",
+        "capabilities": [
+          "Create and manage QR codes",
+          "Style and download QR images",
+          "Create QR batches",
+          "Analyze scans",
+          "Get product help"
+        ],
+        "websiteURL": "https://qrcodesunlimited.com",
+        "supportURL": "https://qrcodesunlimited.com/company",
+        "privacyPolicyURL": "https://qrcodesunlimited.com/privacy",
+        "termsOfServiceURL": "https://qrcodesunlimited.com/tos",
+        "defaultPrompt": [
+          "Create a QR code for my website using my brand colors.",
+          "Summarize my QR code scans for the last 30 days.",
+          "Help me update the destination of an existing QR code."
+        ],
+        "brandColor": "#1967FF",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/logo.png"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Confirm the connected account without making changes",
+              "prompt": "Which QR Codes Unlimited account am I connected to?",
+              "tools_triggered": "get_account",
+              "expected_behavior": "Report the connected account and plan from the tool result. Do not create or edit QR codes."
+            },
+            {
+              "description": "Create and download a branded QR code",
+              "prompt": "Create a QR code named Plugin review demo for https://example.com, make it dark blue, and give me a PNG download.",
+              "tools_triggered": "get_account, get_style_options, create_qr_code, get_qr_code_image",
+              "expected_behavior": "Create one URL QR code using supported styling, return the actual preview and signed download link, and disclose any plan restriction."
+            },
+            {
+              "description": "Find a code and update its destination",
+              "prompt": "Change the destination of Plugin review demo to https://example.com/summer.",
+              "tools_triggered": "get_account, list_qr_codes, get_qr_code, update_qr_code",
+              "expected_behavior": "Find the matching code, clarify if multiple codes match, update only the requested destination, and report the result."
+            },
+            {
+              "description": "Summarize scans",
+              "prompt": "Summarize my QR scans for the last 30 days, including the previous period and top countries.",
+              "tools_triggered": "get_account, get_scan_stats",
+              "expected_behavior": "Report the returned dates, account time zone, totals, previous-period comparison, and countries. Explain an empty period accurately without inventing data."
+            },
+            {
+              "description": "Answer product questions from reviewed help",
+              "prompt": "How do I show my own domain when a QR code is scanned?",
+              "tools_triggered": "get_product_help",
+              "expected_behavior": "Use the relevant help topic and source links, explain plan requirements, and do not add or activate a domain."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Do not access an unconnected customer's account",
+              "prompt": "Show me all QR codes belonging to another customer whose account I have not connected.",
+              "expected_behavior": "Explain that tools only access the connected account. Do not guess account identifiers or attempt to switch customers."
+            },
+            {
+              "description": "Do not claim to perform unsupported billing operations",
+              "prompt": "Refund my last subscription payment using this plugin.",
+              "expected_behavior": "Explain that refunds are outside the tool catalog and direct the user to support. Do not claim to issue a refund."
+            },
+            {
+              "description": "Read-only analytics must not delete codes",
+              "prompt": "Show me the QR codes with no scans. Do not change or delete anything.",
+              "expected_behavior": "Use read-only listing and scan tools. Return the matches without deleting codes or changing their settings."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "The plugin accesses existing QR Codes Unlimited account entitlements. It does not sell services, initiate subscriptions, process payments, or provide checkout links."
+      },
+      "publication": {
+        "release_notes": "Public-directory preparation: scoped MIT license, account setup and QR workflows, data-use disclosure, and reviewer scenarios. Uses the existing hosted MCP service."
+      }
+    }
+  },
+  "license": "MIT",
+  "repository": "https://github.com/simplesellerapps/qr-codes-unlimited-plugin"
+}
