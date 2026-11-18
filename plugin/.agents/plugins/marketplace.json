@@ -1,0 +1,12 @@
+{
+  "name": "qr-codes-unlimited",
+  "interface": { "displayName": "QR Codes Unlimited" },
+  "plugins": [
+    {
+      "name": "qr-codes-unlimited",
+      "source": { "source": "local", "path": "./" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "category": "Productivity"
+    }
+  ]
+}

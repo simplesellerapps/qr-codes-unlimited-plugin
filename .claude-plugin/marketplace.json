@@ -8,7 +8,7 @@
   "plugins": [
     {
       "name": "qr-codes-unlimited",
-      "source": "./",
+      "source": "./plugin",
       "description": "Create QR codes and explore scans with your connected account."
     }
   ]

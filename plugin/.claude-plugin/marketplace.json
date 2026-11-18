@@ -1,0 +1,15 @@
+{
+  "name": "qr-codes-unlimited",
+  "description": "QR Codes Unlimited tools and workflows for connected QR accounts.",
+  "owner": {
+    "name": "QR Codes Unlimited",
+    "email": "hello@qrcodesunlimited.com"
+  },
+  "plugins": [
+    {
+      "name": "qr-codes-unlimited",
+      "source": "./",
+      "description": "Create QR codes and explore scans with your connected account."
+    }
+  ]
+}
