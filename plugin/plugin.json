@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "qr-codes-unlimited",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Create, style, manage, and download QR codes, and explore scan analytics in your QR Codes Unlimited account.",
   "author": {
     "name": "QR Codes Unlimited",
@@ -101,7 +101,7 @@
         "demo_recording_url": "https://simplesellerapps.github.io/qr-codes-unlimited-plugin/"
       },
       "publication": {
-        "release_notes": "Adds a public walkthrough of native Codex OAuth and five positive plus three negative reviewer scenarios, captured against production in Buildkite. The hosted MCP service and plugin workflows are unchanged."
+        "release_notes": "Declares OAuth with dynamic client registration for the OpenAI submission portal. QR tools, skills, account permissions, and Claude compatibility configuration are unchanged."
       }
     }
   },
