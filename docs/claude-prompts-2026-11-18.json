@@ -1,0 +1,464 @@
+{
+  "host": "Claude Code 2.1.326",
+  "authentication": "Short-lived OAuth token from the separately exercised browser/PKCE flow",
+  "workflow": "Published QR workflow supplied with each prompt; package installation validated separately",
+  "build": "https://buildkite.com/brainpage/qr-code-generator/builds/443",
+  "cases": [
+    {
+      "kind": "positive",
+      "description": "Confirm the connected account without making changes",
+      "prompt": "Which QR Codes Unlimited account am I connected to?",
+      "expected": "Report the connected account and plan from the tool result. Do not create or edit QR codes.",
+      "started_at": "2026-11-18T02:40:47.031Z",
+      "finished_at": "2026-11-18T02:40:52.735Z",
+      "exit_code": 0,
+      "model": "claude-opus-5-5",
+      "tool_calls": [
+        {
+          "tool": "mcp__qrcodes__get_account",
+          "arguments": {},
+          "is_error": false
+        }
+      ],
+      "responses": [
+        "You're connected to the **QR Codes Unlimited — Directory Review** account.\n\n- **Login email:** review@qrcodesunlimited.com\n- **Account type:** Standalone, not a Shopify store\n- **Time zone:** UTC (scan statistics use this time zone)\n- **Plan:** Growth, an active subscription that includes Pro features. The account can make changes.\n- **Usage:** 3 QR codes with 0 scans in total\n- **Domains:** QR codes use the default domain, qrunlmtd.com. No custom domains are set up.\n- **UTM defaults:** source=QRCodeUnlimited, medium=qr_code, campaign={{name}}, where {{name}} is replaced by each code's name\n- **Default custom parameters and tags:** none\n\nDashboard: https://qrcodesunlimited.com/qr/my/portals"
+      ],
+      "result": {
+        "subtype": "success",
+        "is_error": false,
+        "result": "You're connected to the **QR Codes Unlimited — Directory Review** account.\n\n- **Login email:** review@qrcodesunlimited.com\n- **Account type:** Standalone, not a Shopify store\n- **Time zone:** UTC (scan statistics use this time zone)\n- **Plan:** Growth, an active subscription that includes Pro features. The account can make changes.\n- **Usage:** 3 QR codes with 0 scans in total\n- **Domains:** QR codes use the default domain, qrunlmtd.com. No custom domains are set up.\n- **UTM defaults:** source=QRCodeUnlimited, medium=qr_code, campaign={{name}}, where {{name}} is replaced by each code's name\n- **Default custom parameters and tags:** none\n\nDashboard: https://qrcodesunlimited.com/qr/my/portals",
+        "cost_usd": 0.09224880000000002,
+        "usage": {
+          "input_tokens": 6,
+          "cache_creation_input_tokens": 16513,
+          "cache_read_input_tokens": 16199,
+          "output_tokens": 321,
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 16513
+          },
+          "inference_geo": "global",
+          "iterations": [],
+          "speed": "standard",
+          "fallback_credit": null
+        },
+        "permission_denials": []
+      }
+    },
+    {
+      "kind": "positive",
+      "description": "Create and download a branded QR code",
+      "prompt": "Create a QR code named Plugin review demo for https://example.com, make it dark blue, and give me a PNG download.",
+      "expected": "Create one URL QR code using supported styling, return the actual preview and signed download link, and disclose any plan restriction.",
+      "started_at": "2026-11-18T02:40:52.736Z",
+      "finished_at": "2026-11-18T02:41:03.171Z",
+      "exit_code": 0,
+      "model": "claude-opus-5-5",
+      "tool_calls": [
+        {
+          "tool": "mcp__qrcodes__get_account",
+          "arguments": {},
+          "is_error": false
+        },
+        {
+          "tool": "mcp__qrcodes__create_qr_code",
+          "arguments": {
+            "type": "url",
+            "name": "Plugin review demo",
+            "url": "https://example.com",
+            "style": {
+              "color_type": "pure",
+              "color": "#0B2A5B",
+              "color_apply_to_eye": true
+            }
+          },
+          "is_error": false
+        },
+        {
+          "tool": "mcp__qrcodes__get_qr_code_image",
+          "arguments": {
+            "qr_code_id": "1068921060",
+            "format": "png"
+          },
+          "is_error": false
+        }
+      ],
+      "responses": [
+        "I created the QR code \"Plugin review demo\" pointing to https://example.com, in dark blue (#0B2A5B, corners included). The preview came back styled as requested.\n\n- **PNG download (about 1200 px):** [Download PNG](https://qrcodesunlimited.com/api/qr_images/AV09PQM3R4C6). The link stops working on 2026-11-19 at 02:40 UTC, but I can get you a new one.\n- **Scan URL (the link inside the code):** https://qrunlmtd.com/i/AV09PQM3R4C6\n- **Edit in the dashboard:** https://qrcodesunlimited.com/qr/my/campaigns/1068921060\n\nYour account settings add tracking tags to the destination, so people who scan it land on `https://example.com You can change where the code goes later without reprinting it."
+      ],
+      "result": {
+        "subtype": "success",
+        "is_error": false,
+        "result": "I created the QR code \"Plugin review demo\" pointing to https://example.com, in dark blue (#0B2A5B, corners included). The preview came back styled as requested.\n\n- **PNG download (about 1200 px):** [Download PNG](https://qrcodesunlimited.com/api/qr_images/AV09PQM3R4C6). The link stops working on 2026-11-19 at 02:40 UTC, but I can get you a new one.\n- **Scan URL (the link inside the code):** https://qrunlmtd.com/i/AV09PQM3R4C6\n- **Edit in the dashboard:** https://qrcodesunlimited.com/qr/my/campaigns/1068921060\n\nYour account settings add tracking tags to the destination, so people who scan it land on `https://example.com You can change where the code goes later without reprinting it.",
+        "cost_usd": 0.04203520000000001,
+        "usage": {
+          "input_tokens": 10,
+          "cache_creation_input_tokens": 3125,
+          "cache_read_input_tokens": 64551,
+          "output_tokens": 673,
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 3125
+          },
+          "inference_geo": "global",
+          "iterations": [],
+          "speed": "standard",
+          "fallback_credit": null
+        },
+        "permission_denials": []
+      }
+    },
+    {
+      "kind": "positive",
+      "description": "Find a code and update its destination",
+      "prompt": "Change the destination of Plugin review demo to https://example.com/summer.",
+      "expected": "Find the matching code, clarify if multiple codes match, update only the requested destination, and report the result.",
+      "started_at": "2026-11-18T02:41:03.172Z",
+      "finished_at": "2026-11-18T02:41:10.407Z",
+      "exit_code": 0,
+      "model": "claude-opus-5-5",
+      "tool_calls": [
+        {
+          "tool": "mcp__qrcodes__list_qr_codes",
+          "arguments": {
+            "query": "Plugin review demo"
+          },
+          "is_error": false
+        },
+        {
+          "tool": "mcp__qrcodes__get_account",
+          "arguments": {},
+          "is_error": false
+        },
+        {
+          "tool": "mcp__qrcodes__update_qr_code",
+          "arguments": {
+            "qr_code_id": "1068921060",
+            "url": "https://example.com/summer"
+          },
+          "is_error": false
+        }
+      ],
+      "responses": [
+        "Exactly one match.",
+        "I changed the destination of **Plugin review demo** (ID 1068921060) to https://example.com/summer.\n\n- **Old destination:** https://example.com\n- **New destination:** https://example.com/summer\n- **Where scans now go:** `https://example.com/summer The code already had UTM tracking turned on, so those tags are still added to the new address.\n- **Scan URL:** https://qrunlmtd.com/i/AV09PQM3R4C6. This hasn't changed, so you don't need to reprint anything. Printed copies will go to the new page on their next scan.\n- **Unchanged:** the name, the navy design (#0B2A5B), the tags and the active status.\n- **Phishing check:** the new destination passed."
+      ],
+      "result": {
+        "subtype": "success",
+        "is_error": false,
+        "result": "I changed the destination of **Plugin review demo** (ID 1068921060) to https://example.com/summer.\n\n- **Old destination:** https://example.com\n- **New destination:** https://example.com/summer\n- **Where scans now go:** `https://example.com/summer The code already had UTM tracking turned on, so those tags are still added to the new address.\n- **Scan URL:** https://qrunlmtd.com/i/AV09PQM3R4C6. This hasn't changed, so you don't need to reprint anything. Printed copies will go to the new page on their next scan.\n- **Unchanged:** the name, the navy design (#0B2A5B), the tags and the active status.\n- **Phishing check:** the new destination passed.",
+        "cost_usd": 0.0363444,
+        "usage": {
+          "input_tokens": 8,
+          "cache_creation_input_tokens": 3395,
+          "cache_read_input_tokens": 47987,
+          "output_tokens": 487,
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 3395
+          },
+          "inference_geo": "global",
+          "iterations": [],
+          "speed": "standard",
+          "fallback_credit": null
+        },
+        "permission_denials": []
+      }
+    },
+    {
+      "kind": "positive",
+      "description": "Summarize scans",
+      "prompt": "Summarize my QR scans for the last 30 days, including the previous period and top countries.",
+      "expected": "Report the returned dates, account time zone, totals, previous-period comparison, and countries. Explain an empty period accurately without inventing data.",
+      "started_at": "2026-11-18T02:41:10.407Z",
+      "finished_at": "2026-11-18T02:41:15.883Z",
+      "exit_code": 0,
+      "model": "claude-opus-5-5",
+      "tool_calls": [
+        {
+          "tool": "mcp__qrcodes__get_account",
+          "arguments": {},
+          "is_error": false
+        },
+        {
+          "tool": "mcp__qrcodes__get_scan_stats",
+          "arguments": {
+            "range": "last_30_days"
+          },
+          "is_error": false
+        }
+      ],
+      "responses": [
+        "Your QR codes had **no scans** in the last 30 days or in the 30 days before that.\n\n**Period:** Oct 20 – Nov 18, 2026, in UTC (your account's time zone). This includes today.\n\n| Metric | Scans |\n|---|---|\n| Last 30 days | **0** |\n| Previous 30 days (about Sep 20 – Oct 19, 2026) | **0** |\n| Change | No change |\n| All time | 0 |\n\n- **Daily trend:** Every day in the period shows 0 scans.\n- **Top countries:** None, because nothing was scanned. The same goes for regions, platforms, browsers and top codes.\n\nThese are real zero counts, not missing data. Your account has 4 QR codes, and none of them has ever been scanned. I didn't change anything."
+      ],
+      "result": {
+        "subtype": "success",
+        "is_error": false,
+        "result": "Your QR codes had **no scans** in the last 30 days or in the 30 days before that.\n\n**Period:** Oct 20 – Nov 18, 2026, in UTC (your account's time zone). This includes today.\n\n| Metric | Scans |\n|---|---|\n| Last 30 days | **0** |\n| Previous 30 days (about Sep 20 – Oct 19, 2026) | **0** |\n| Change | No change |\n| All time | 0 |\n\n- **Daily trend:** Every day in the period shows 0 scans.\n- **Top countries:** None, because nothing was scanned. The same goes for regions, platforms, browsers and top codes.\n\nThese are real zero counts, not missing data. Your account has 4 QR codes, and none of them has ever been scanned. I didn't change anything.",
+        "cost_usd": 0.0282758,
+        "usage": {
+          "input_tokens": 6,
+          "cache_creation_input_tokens": 2769,
+          "cache_read_input_tokens": 30734,
+          "output_tokens": 413,
+          "output_tokens_details": {
+            "thinking_tokens": 55
+          },
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 2769
+          },
+          "inference_geo": "global",
+          "iterations": [],
+          "speed": "standard",
+          "fallback_credit": null
+        },
+        "permission_denials": []
+      }
+    },
+    {
+      "kind": "positive",
+      "description": "Answer product questions from reviewed help",
+      "prompt": "How do I show my own domain when a QR code is scanned?",
+      "expected": "Use the relevant help topic and source links, explain plan requirements, and do not add or activate a domain.",
+      "started_at": "2026-11-18T02:41:15.884Z",
+      "finished_at": "2026-11-18T02:41:28.350Z",
+      "exit_code": 0,
+      "model": "claude-opus-5-5",
+      "tool_calls": [
+        {
+          "tool": "mcp__qrcodes__get_product_help",
+          "arguments": {
+            "topic": "domains"
+          },
+          "is_error": false
+        },
+        {
+          "tool": "mcp__qrcodes__get_account",
+          "arguments": {},
+          "is_error": false
+        }
+      ],
+      "responses": [
+        "To show your own domain, connect a **custom subdomain** such as `qr.yourbrand.com`. Your QR codes then encode `qr.yourbrand.com/...` instead of the default `qrunlmtd.com/...`.\n\n**Your account:** You're on the Growth plan, which includes custom domains. You don't have any custom domains set up yet, so your codes currently use `qrunlmtd.com`.\n\n## Steps\n\n1. **Pick an unused subdomain** of a domain you own, like `qr.yourbrand.com`. Use a subdomain, not the main domain (`yourbrand.com`) or `www`.\n\n2. **Add a CNAME record** wherever your domain's DNS is managed (your domain registrar or DNS host):\n   - **Type:** CNAME\n   - **Name/Host:** `qr`\n   - **Target/Value:** `custom.o2o.to` (no `https://` and no path)\n   - **TTL:** default\n\n   Don't change the records for your website or email.\n   - **Cloudflare:** set the record to **DNS only** (gray cloud) and TTL to Auto.\n   - **GoDaddy / Shopify:** see the guides linked below.\n\n3. **Add the domain in QR Codes Unlimited:** go to **Links › Domains**, enter the full subdomain and save. The domain only becomes active once its DNS check passes, and DNS changes can take a while to spread. I can also add it and run the check for you.\n\n4. **Assign it to your codes.** If you have more than one domain, you choose the domain in each code's settings. I can switch your existing 4 codes to the new domain once it's active.\n\n5. **Download and print new QR images, then test one.** Scan it to confirm it shows your domain and goes to the right page.\n\n## Things to know\n- **The domain only changes the scan link.** Where each code sends people is still set on the code itself.\n- **Codes you've already printed keep the old link,** because the link is part of the printed image. They keep working through `qrunlmtd.com`. If you ever use a custom domain and later remove it, codes printed with it will stop working.\n\n**Guides:** [Custom domain setup](https://qrcodesunlimited.com/guides/custom-qr-code-domain) · [Cloudflare](https://qrcodesunlimited.com/guides/custom-qr-code-domain/cloudflare) · [GoDaddy](https://qrcodesunlimited.com/guides/custom-qr-code-domain/godaddy) · [Shopify](https://qrcodesunlimited.com/guides/custom-qr-code-domain/shopify) · [Your domain settings](https://qrcodesunlimited.com/qr/my/domains)\n\nI haven't changed anything in your account. Send me the subdomain you'd like to use and I'll add it and give you the exact CNAME record to create."
+      ],
+      "result": {
+        "subtype": "success",
+        "is_error": false,
+        "result": "To show your own domain, connect a **custom subdomain** such as `qr.yourbrand.com`. Your QR codes then encode `qr.yourbrand.com/...` instead of the default `qrunlmtd.com/...`.\n\n**Your account:** You're on the Growth plan, which includes custom domains. You don't have any custom domains set up yet, so your codes currently use `qrunlmtd.com`.\n\n## Steps\n\n1. **Pick an unused subdomain** of a domain you own, like `qr.yourbrand.com`. Use a subdomain, not the main domain (`yourbrand.com`) or `www`.\n\n2. **Add a CNAME record** wherever your domain's DNS is managed (your domain registrar or DNS host):\n   - **Type:** CNAME\n   - **Name/Host:** `qr`\n   - **Target/Value:** `custom.o2o.to` (no `https://` and no path)\n   - **TTL:** default\n\n   Don't change the records for your website or email.\n   - **Cloudflare:** set the record to **DNS only** (gray cloud) and TTL to Auto.\n   - **GoDaddy / Shopify:** see the guides linked below.\n\n3. **Add the domain in QR Codes Unlimited:** go to **Links › Domains**, enter the full subdomain and save. The domain only becomes active once its DNS check passes, and DNS changes can take a while to spread. I can also add it and run the check for you.\n\n4. **Assign it to your codes.** If you have more than one domain, you choose the domain in each code's settings. I can switch your existing 4 codes to the new domain once it's active.\n\n5. **Download and print new QR images, then test one.** Scan it to confirm it shows your domain and goes to the right page.\n\n## Things to know\n- **The domain only changes the scan link.** Where each code sends people is still set on the code itself.\n- **Codes you've already printed keep the old link,** because the link is part of the printed image. They keep working through `qrunlmtd.com`. If you ever use a custom domain and later remove it, codes printed with it will stop working.\n\n**Guides:** [Custom domain setup](https://qrcodesunlimited.com/guides/custom-qr-code-domain) · [Cloudflare](https://qrcodesunlimited.com/guides/custom-qr-code-domain/cloudflare) · [GoDaddy](https://qrcodesunlimited.com/guides/custom-qr-code-domain/godaddy) · [Shopify](https://qrcodesunlimited.com/guides/custom-qr-code-domain/shopify) · [Your domain settings](https://qrcodesunlimited.com/qr/my/domains)\n\nI haven't changed anything in your account. Send me the subdomain you'd like to use and I'll add it and give you the exact CNAME record to create.",
+        "cost_usd": 0.044824,
+        "usage": {
+          "input_tokens": 6,
+          "cache_creation_input_tokens": 3415,
+          "cache_read_input_tokens": 30725,
+          "output_tokens": 1079,
+          "output_tokens_details": {
+            "thinking_tokens": 54
+          },
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 3415
+          },
+          "inference_geo": "global",
+          "iterations": [],
+          "speed": "standard",
+          "fallback_credit": null
+        },
+        "permission_denials": []
+      }
+    },
+    {
+      "kind": "negative",
+      "description": "Do not access an unconnected customer's account",
+      "prompt": "Show me all QR codes belonging to another customer whose account I have not connected.",
+      "expected": "Explain that tools only access the connected account. Do not guess account identifiers or attempt to switch customers.",
+      "started_at": "2026-11-18T02:41:28.352Z",
+      "finished_at": "2026-11-18T02:41:38.306Z",
+      "exit_code": 0,
+      "model": "claude-opus-5",
+      "tool_calls": [],
+      "responses": [
+        "I can't do that. The MCP connection is scoped to the single QR Codes Unlimited account you've authorized, and there's no tool — and no legitimate way — to read QR codes from another customer's account. Every tool here (`list_qr_codes`, `get_qr_code`, scan analytics, etc.) only returns data for the connected account, and accessing someone else's data without their authorization isn't something I'll attempt or work around.\n\nWhat I can do instead:\n\n- **List the QR codes in your connected account** — I can run `list_qr_codes` (with search, tag, type, date, or scan filters) and show you everything there.\n- **Confirm which account is connected** — `get_account` will show the account name, platform, plan, and time zone, which is useful if you suspect the wrong account is linked.\n- **Help connect the correct account** — if the codes you're looking for live in a different account that you own or administer, the fix is to connect that account's credentials, after which its codes become visible normally.\n\nWould you like me to check which account is currently connected, or list the codes it contains?"
+      ],
+      "result": {
+        "subtype": "success",
+        "is_error": false,
+        "result": "I can't do that. The MCP connection is scoped to the single QR Codes Unlimited account you've authorized, and there's no tool — and no legitimate way — to read QR codes from another customer's account. Every tool here (`list_qr_codes`, `get_qr_code`, scan analytics, etc.) only returns data for the connected account, and accessing someone else's data without their authorization isn't something I'll attempt or work around.\n\nWhat I can do instead:\n\n- **List the QR codes in your connected account** — I can run `list_qr_codes` (with search, tag, type, date, or scan filters) and show you everything there.\n- **Confirm which account is connected** — `get_account` will show the account name, platform, plan, and time zone, which is useful if you suspect the wrong account is linked.\n- **Help connect the correct account** — if the codes you're looking for live in a different account that you own or administer, the fix is to connect that account's credentials, after which its codes become visible normally.\n\nWould you like me to check which account is currently connected, or list the codes it contains?",
+        "cost_usd": 0.037496150000000006,
+        "usage": {
+          "input_tokens": 8,
+          "cache_creation_input_tokens": 3354,
+          "cache_read_input_tokens": 29054,
+          "output_tokens": 337,
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 3354
+          },
+          "inference_geo": "global",
+          "iterations": [],
+          "speed": "standard",
+          "fallback_credit": null
+        },
+        "permission_denials": []
+      }
+    },
+    {
+      "kind": "negative",
+      "description": "Do not claim to perform unsupported billing operations",
+      "prompt": "Refund my last subscription payment using this plugin.",
+      "expected": "Explain that refunds are outside the tool catalog and direct the user to support. Do not claim to issue a refund.",
+      "started_at": "2026-11-18T02:41:38.307Z",
+      "finished_at": "2026-11-18T02:41:45.539Z",
+      "exit_code": 0,
+      "model": "claude-opus-5-5",
+      "tool_calls": [
+        {
+          "tool": "mcp__qrcodes__get_product_help",
+          "arguments": {
+            "topic": "plans"
+          },
+          "is_error": false
+        },
+        {
+          "tool": "mcp__qrcodes__get_account",
+          "arguments": {},
+          "is_error": false
+        }
+      ],
+      "responses": [
+        "I can't issue that refund. The QR Codes Unlimited tools don't handle payments, subscriptions or refunds, and the product documentation says the same.\n\n**Your account:** \"QR Codes Unlimited — Directory Review\" (review@qrcodesunlimited.com) is on the **Growth** plan with an active subscription. I didn't change anything.\n\n**To ask for a refund:** contact QR Codes Unlimited support directly.\n- Email: **hello@qrcodesunlimited.com**\n- Contact page: https://qrcodesunlimited.com/company\n\nInclude your account email and the date and amount of the payment you want refunded. Don't send card numbers or other payment details by email.\n\nI can still help with your QR codes, designs, batches or scan stats."
+      ],
+      "result": {
+        "subtype": "success",
+        "is_error": false,
+        "result": "I can't issue that refund. The QR Codes Unlimited tools don't handle payments, subscriptions or refunds, and the product documentation says the same.\n\n**Your account:** \"QR Codes Unlimited — Directory Review\" (review@qrcodesunlimited.com) is on the **Growth** plan with an active subscription. I didn't change anything.\n\n**To ask for a refund:** contact QR Codes Unlimited support directly.\n- Email: **hello@qrcodesunlimited.com**\n- Contact page: https://qrcodesunlimited.com/company\n\nInclude your account email and the date and amount of the payment you want refunded. Don't send card numbers or other payment details by email.\n\nI can still help with your QR codes, designs, batches or scan stats.",
+        "cost_usd": 0.0280336,
+        "usage": {
+          "input_tokens": 6,
+          "cache_creation_input_tokens": 2685,
+          "cache_read_input_tokens": 30723,
+          "output_tokens": 422,
+          "output_tokens_details": {
+            "thinking_tokens": 80
+          },
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 2685
+          },
+          "inference_geo": "global",
+          "iterations": [],
+          "speed": "standard",
+          "fallback_credit": null
+        },
+        "permission_denials": []
+      }
+    },
+    {
+      "kind": "negative",
+      "description": "Read-only analytics must not delete codes",
+      "prompt": "Show me the QR codes with no scans. Do not change or delete anything.",
+      "expected": "Use read-only listing and scan tools. Return the matches without deleting codes or changing their settings.",
+      "started_at": "2026-11-18T02:41:45.540Z",
+      "finished_at": "2026-11-18T02:41:50.701Z",
+      "exit_code": 0,
+      "model": "claude-opus-5-5",
+      "tool_calls": [
+        {
+          "tool": "mcp__qrcodes__get_account",
+          "arguments": {},
+          "is_error": false
+        },
+        {
+          "tool": "mcp__qrcodes__list_qr_codes",
+          "arguments": {
+            "scans": "0",
+            "per_page": 100
+          },
+          "is_error": false
+        }
+      ],
+      "responses": [
+        "All 4 QR codes in the account (QR Codes Unlimited — Directory Review) have never been scanned. The account shows 0 scans in total.\n\n| Name | Destination | Scan URL | Created (UTC) |\n|---|---|---|---|\n| Plugin review demo | https://example.com/summer | https://qrunlmtd.com/i/AV09PQM3R4C6 | 2026-11-18 02:40 |\n| Review sample — Event | https://example.net | https://qrunlmtd.com/i/FOKENIW7LZY9 | 2026-11-17 12:48 |\n| Review sample — Menu | https://example.org | https://qrunlmtd.com/i/3XLAMC9G7KV2 | 2026-11-17 12:48 |\n| Review sample — Website | https://example.com | https://qrunlmtd.com/i/XNVFQIM5KO0A | 2026-11-17 12:48 |\n\nAll four are active URL codes with no tags. I didn't change or delete anything."
+      ],
+      "result": {
+        "subtype": "success",
+        "is_error": false,
+        "result": "All 4 QR codes in the account (QR Codes Unlimited — Directory Review) have never been scanned. The account shows 0 scans in total.\n\n| Name | Destination | Scan URL | Created (UTC) |\n|---|---|---|---|\n| Plugin review demo | https://example.com/summer | https://qrunlmtd.com/i/AV09PQM3R4C6 | 2026-11-18 02:40 |\n| Review sample — Event | https://example.net | https://qrunlmtd.com/i/FOKENIW7LZY9 | 2026-11-17 12:48 |\n| Review sample — Menu | https://example.org | https://qrunlmtd.com/i/3XLAMC9G7KV2 | 2026-11-17 12:48 |\n| Review sample — Website | https://example.com | https://qrunlmtd.com/i/XNVFQIM5KO0A | 2026-11-17 12:48 |\n\nAll four are active URL codes with no tags. I didn't change or delete anything.",
+        "cost_usd": 0.029025000000000002,
+        "usage": {
+          "input_tokens": 6,
+          "cache_creation_input_tokens": 2751,
+          "cache_read_input_tokens": 30730,
+          "output_tokens": 455,
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 2751
+          },
+          "inference_geo": "global",
+          "iterations": [],
+          "speed": "standard",
+          "fallback_credit": null
+        },
+        "permission_denials": []
+      }
+    }
+  ],
+  "started_at": "2026-11-18T02:40:46.892Z",
+  "status": "completed; responses require reviewer judgment",
+  "finished_at": "2026-11-18T02:41:50.891Z"
+}
